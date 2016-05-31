@@ -6,20 +6,30 @@
  <script src='getCookie.js'></script>
 </head>
 <body>
- <script type="text/javascript">
-  var count = getCookie('count');
-  if(!count){
-    count = 0;
+ <script>
+ var count = getCookie('count');
+ if(!count){
+   count = 0;
+ }
+
+ count++;
+ var expire = new Date();
+
+ // Setting expire time in milliseconds
+ expire.setTime(expire.getTime() + (30 * 24 * 60 * 60 * 1000));
+ document.cookie = ('count=' + count +'; expire=' + expire);
+ document.write("This is " + count + " times visit to our Website");
+
+  //Reloading web page by clicking reload button
+  window.onload = function(){
+    document.getElementById("btn").onclick = function(){
+      location.reload();
+    }
   }
-
-  count++;
-  var expire = new Date();
-
-  // Setting expire time in milliseconds
-  expire.setTime(expire.getTime() + (30 * 24 * 60 * 60 * 1000));
-  document.cookie = ('count=' + count +'; expire=' + expire);
-  document.write("This is " + count + " times visit to our Website!");
-
  </script>
+
+ <form name="push">
+   <input type="button" id="btn" value="RELOAD"/>
+ </form>
 </body>
 </html>
